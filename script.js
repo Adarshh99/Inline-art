@@ -29,6 +29,55 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// Service items scroll to featured sections
+document.addEventListener('DOMContentLoaded', () => {
+    // Mapping service items to their corresponding featured sections
+    const serviceToSectionMap = {
+        'modular-kitchen': 'modular-kitchen',
+        'modular-wardrobe': 'modular-wardrobe',
+        'residential': 'residential',
+        'commercial': 'commercial',
+        'bathroom': 'bathroom',
+        'architectural': 'architectural',
+        'modular-sofa': 'modular-sofa',
+        'window-blinds': 'window-blinds',
+        'pop-design': 'pop-design',
+        'window-curtains': 'window-curtains',
+        'plumbing': 'plumbing',
+        'landscaping': 'landscaping',
+        'electrical': 'electrical',
+        'marble': 'marble',
+        'cnc': 'cnc',
+        'shutters': 'shutters',
+        'factory': 'factory'
+    };
+
+    // Add click handlers to service items
+    document.querySelectorAll('.service-item-new').forEach(serviceItem => {
+        serviceItem.style.cursor = 'pointer';
+        
+        serviceItem.addEventListener('click', function() {
+            const serviceType = this.getAttribute('data-service');
+            const sectionId = serviceToSectionMap[serviceType];
+            
+            if (sectionId) {
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    // Smooth scroll to the section with offset for fixed header
+                    const headerOffset = 80;
+                    const elementPosition = targetSection.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+});
+
 // Floating Labels Enhancement
 document.addEventListener('DOMContentLoaded', () => {
     const formInputs = document.querySelectorAll('.form-input');
@@ -303,6 +352,37 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transitionDelay = `${index * 0.1}s`;
         fadeInObserver.observe(el);
     });
+    
+    // Additional service items - fade in with stagger
+    document.querySelectorAll('.additional-service-item').forEach((el, index) => {
+        // Check if element is already in viewport
+        const rect = el.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInViewport) {
+            // If already in viewport, make visible immediately
+            el.classList.add('scroll-fade-in', 'animate');
+        } else {
+            // Otherwise, observe for scroll
+            el.classList.add('scroll-fade-in');
+            el.style.transitionDelay = `${index * 0.15}s`;
+            fadeInObserver.observe(el);
+        }
+    });
+    
+    // Additional services section subtitle - fade in
+    const additionalSubtitle = document.querySelector('.additional-services-section .section-subtitle');
+    if (additionalSubtitle) {
+        const rect = additionalSubtitle.getBoundingClientRect();
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInViewport) {
+            additionalSubtitle.classList.add('scroll-fade-in', 'animate');
+        } else {
+            additionalSubtitle.classList.add('scroll-fade-in');
+            fadeInObserver.observe(additionalSubtitle);
+        }
+    }
 });
 
 // Parallax effect for hero section
