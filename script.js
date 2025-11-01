@@ -415,7 +415,7 @@ const galleryData = {
     kitchen: {
         title: 'Modular Kitchen Unit',
         images: [
-            'https://assets.zyrosite.com/cdn-cgi/image/format=auto,quality=95,fit=crop,gravity=auto,w=1200/GCG69xk/pexels-heyho-7533764-dJo6VQP6v8h1Rj6V.jpg',
+            'https://ultrafreshindia.com/wp-content/uploads/2024/06/Victorian-kitchen-copy.jpg',
             'https://images.woodenstreet.de/image/data/modular%20kitchen/UrbaneU.jpg',
             'https://cdn.shopify.com/s/files/1/0558/5557/9327/files/127_480x480.jpg?v=1686336886',
             'https://images.woodenstreet.de/image/data/modular%20kitchen/22.jpg'
